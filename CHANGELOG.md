@@ -4,6 +4,7 @@
 * Add longer pubspec description
 * Update Readme display by adding more description.
 * To comply with the public_member_api_docs linter rule
+* Add Example
 
 ## 0.0.1
 
