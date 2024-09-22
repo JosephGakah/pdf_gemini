@@ -1,10 +1,6 @@
-Here's a sample `README.md` for your Flutter package that uses API keys:
-
----
-
 # Pdf Gemini Package
 
-This package provides a simple way to interact and chat with pdf files using google gemini.
+This package provides a simple way to interact, chat with pdf files using google gemini and managing uploaded files.
 
 ## Features
 - Upload PDF to gemini
