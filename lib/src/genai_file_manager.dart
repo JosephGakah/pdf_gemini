@@ -87,11 +87,13 @@ class GenaiFileManager {
       );
 
       if (response.statusCode == 200) {
-        dynamic filesJson = response.data['files'];
-        if (filesJson is List) {
-          return filesJson.map((file) => GenaiFile.fromJson(file)).toList();
+        var filesJson = response.data;
+        var files = filesJson['files'];
+        if (files != null && files is List) {
+          return files.map((file) => GenaiFile.fromJson(file)).toList();
+        } else {
+          return [];
         }
-        return [];
       } else {
         throw "Failed to retrieve uploaded files. Status code: ${response.statusCode}";
       }

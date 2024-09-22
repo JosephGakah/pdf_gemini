@@ -1,3 +1,7 @@
+## 0.0.3
+
+* Fix Retreving Files from Genai server.
+
 ## 0.0.2
 
 * Fix Error failed retrieving files Error

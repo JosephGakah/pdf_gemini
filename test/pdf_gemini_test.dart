@@ -10,11 +10,15 @@ void main() {
 
     test('Prompt PDF Test', () async {
       // Create a temporary test file
-      final testFile = File('your_file_path').readAsBytesSync();
+      final testFile = File('').readAsBytesSync();
 
       try {
         await genaiService.promptDocument(
-            'file_name', 'pdf', testFile, 'your_prompt');
+          'Your file name',
+          'pdf',
+          testFile,
+          'your prompt',
+        );
       } catch (e) {
         fail('Failed: $e');
       }

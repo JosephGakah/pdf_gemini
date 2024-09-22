@@ -14,7 +14,7 @@ class GenaiFile {
   final String mimeType;
 
   /// The size of the file in bytes.
-  final int sizeBytes;
+  final String sizeBytes;
 
   /// The creation time of the file.
   final DateTime createTime;
@@ -58,7 +58,7 @@ class GenaiFile {
       name: json['name'],
       displayName: json['displayName'],
       mimeType: json['mimeType'],
-      sizeBytes: int.parse(json['sizeBytes']),
+      sizeBytes: json['sizeBytes'],
       createTime: DateTime.parse(json['createTime']),
       updateTime: DateTime.parse(json['updateTime']),
       expirationTime: DateTime.parse(json['expirationTime']),

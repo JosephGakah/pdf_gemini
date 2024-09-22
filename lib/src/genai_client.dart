@@ -51,7 +51,7 @@ class GenaiClient {
                 {"text": prompt},
                 {
                   "file_data": {
-                    "mime_type": "application/$fileType",
+                    "mime_type": "application/pdf",
                     "file_uri": file.uri,
                   }
                 }
@@ -61,10 +61,12 @@ class GenaiClient {
         }),
       );
 
+      print(response.data);
       var genaiResponse = GenaiGeneratedResponseModel.fromJson(response.data);
 
       return genaiResponse;
     } catch (e) {
+      print(e);
       throw "Error $e";
     }
   }
