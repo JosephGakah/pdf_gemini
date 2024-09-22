@@ -1,5 +1,5 @@
 name: pdf_gemini
-description: "chat with your pdf"
+description: "This package provides a simple way to interact and chat with pdf files using google gemini."
 version: 0.0.2
 homepage: "https://joegakah.com"
 repository: "https://github.com/JosephGakah/pdf_gemini"
