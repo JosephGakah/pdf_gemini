@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:io';
 import 'package:pdf_gemini/pdf_gemini.dart';
 import 'package:pdf_gemini/src/genai_generated_response_model.dart'; // Ensure this package is included in your pubspec.yaml
