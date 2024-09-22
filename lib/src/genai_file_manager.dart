@@ -1,14 +1,29 @@
 import 'dart:typed_data';
-
 import 'package:dio/dio.dart';
 import 'package:pdf_gemini/src/genai_file_model.dart';
 
+/// A manager for handling file uploads and retrievals for the Gemini API.
 class GenaiFileManager {
+  /// The Gemini API key used for authentication.
   final String geminiApiKey;
 
+  /// Dio instance for making HTTP requests.
   Dio dio = Dio();
+
+  /// Base URL for the Gemini API.
   String baseUrl = "https://generativelanguage.googleapis.com";
 
+  /// Creates an instance of [GenaiFileManager].
+  ///
+  /// Requires a [geminiApiKey] to authenticate with the Gemini API.
+  GenaiFileManager({
+    required this.geminiApiKey,
+  });
+
+  /// Uploads a file to the Gemini API.
+  ///
+  /// Takes a [fileName], [fileType], and [fileData] (as a Uint8List).
+  /// Returns a [GenaiFile] object representing the uploaded file.
   Future<GenaiFile> uploadFile(
     String fileName,
     String fileType,
@@ -62,6 +77,9 @@ class GenaiFileManager {
     }
   }
 
+  /// Retrieves a list of uploaded files from storage.
+  ///
+  /// Returns a list of [GenaiFile] objects representing the uploaded files.
   Future<List<GenaiFile>> getUploadedFiles() async {
     try {
       Response response = await dio.get(
@@ -70,7 +88,7 @@ class GenaiFileManager {
 
       if (response.statusCode == 200) {
         dynamic filesJson = response.data['files'];
-        if (filesJson == List) {
+        if (filesJson is List) {
           return filesJson.map((file) => GenaiFile.fromJson(file)).toList();
         }
         return [];
@@ -78,10 +96,14 @@ class GenaiFileManager {
         throw "Failed to retrieve uploaded files. Status code: ${response.statusCode}";
       }
     } catch (e) {
-      throw "Failed to retrieve uploaded files";
+      throw "Failed to retrieve uploaded files: $e";
     }
   }
 
+  /// Retrieves a GenAI file by checking if it exists; otherwise, uploads it.
+  ///
+  /// Takes a [fileName], [fileType], and [fileData] (as a Uint8List).
+  /// Returns a [GenaiFile] object representing the found or uploaded file.
   Future<GenaiFile> getGenaiFile(
     String fileName,
     String fileType,
@@ -104,11 +126,7 @@ class GenaiFileManager {
 
       return genaiFile;
     } catch (e) {
-      throw "Error: $e";
+      throw "Error retrieving or uploading GenAI file: $e";
     }
   }
-
-  GenaiFileManager({
-    required this.geminiApiKey,
-  });
 }

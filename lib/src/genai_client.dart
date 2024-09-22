@@ -1,18 +1,30 @@
 import 'dart:convert';
 import 'dart:typed_data';
-
 import 'package:dio/dio.dart';
 import 'package:pdf_gemini/pdf_gemini.dart';
 import 'package:pdf_gemini/src/genai_generated_response_model.dart';
 
+/// A client for interacting with the Gemini API with pdf
 class GenaiClient {
+  /// Gemini API Key.
   final String geminiApiKey;
+
+  /// Initializes the Genai File Manager.
   final GenaiFileManager genaiFileManager;
+
+  /// Base URL used to call APIs.
   String baseUrl = "https://generativelanguage.googleapis.com/v1beta";
 
+  /// Creates an instance of [GenaiClient].
+  ///
+  /// Requires a [geminiApiKey] to authenticate with the Gemini API.
   GenaiClient({required this.geminiApiKey})
       : genaiFileManager = GenaiFileManager(geminiApiKey: geminiApiKey);
 
+  /// Prompts the generation of a document based on the provided parameters.
+  ///
+  /// Takes a [fileName], [fileType], [fileData], and a [prompt] string.
+  /// Returns a [GenaiGeneratedResponseModel] containing the generated content.
   Future<GenaiGeneratedResponseModel> promptDocument(
     String fileName,
     String fileType,
@@ -20,6 +32,7 @@ class GenaiClient {
     String prompt,
   ) async {
     try {
+      // Get the genai file by checking if it exists; otherwise, upload it.
       final file = await genaiFileManager.getGenaiFile(
         fileName,
         fileType,
@@ -35,7 +48,7 @@ class GenaiClient {
           "contents": [
             {
               "parts": [
-                {"text": "Can you add a few more lines to this poem?"},
+                {"text": prompt},
                 {
                   "file_data": {
                     "mime_type": "application/$fileType",

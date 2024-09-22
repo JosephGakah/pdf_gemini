@@ -1,10 +1,22 @@
+/// Represents the response model for generated content from the Gemini API.
+///
+/// This class contains the generated text and an optional citation URI.
 class GenaiGeneratedResponseModel {
+  /// The generated text content.
   final String text;
+
+  /// The URI of the source that cites this generated content, if available.
   final String? citationUri;
 
+  /// Creates an instance of [GenaiGeneratedResponseModel].
+  ///
+  /// Requires [text] to be provided, and [citationUri] is optional.
   GenaiGeneratedResponseModel({required this.text, this.citationUri});
 
-  // Factory constructor to parse JSON response and extract relevant data
+  /// Factory constructor to create a [GenaiGeneratedResponseModel] instance
+  /// from a JSON response.
+  ///
+  /// Takes a [json] map and extracts relevant data to initialize the model.
   factory GenaiGeneratedResponseModel.fromJson(Map<String, dynamic> json) {
     // Extract text
     String text = '';

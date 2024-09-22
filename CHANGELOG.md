@@ -3,6 +3,7 @@
 * Fix Error failed retrieving files Error
 * Add longer pubspec description
 * Update Readme display by adding more description.
+* To comply with the public_member_api_docs linter rule
 
 ## 0.0.1
 
