@@ -61,12 +61,10 @@ class GenaiClient {
         }),
       );
 
-      print(response.data);
       var genaiResponse = GenaiGeneratedResponseModel.fromJson(response.data);
 
       return genaiResponse;
     } catch (e) {
-      print(e);
       throw "Error $e";
     }
   }
